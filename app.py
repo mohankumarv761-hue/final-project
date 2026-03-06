@@ -23,7 +23,8 @@ DB_CONFIG = {
     'host': 'localhost',
     'user': 'root',  # Change to your MySQL username
     'password': 'Mohan@2006',  # Change to your MySQL password
-    'database': 'hospital_management'
+    'database': 'hospital_management',
+    'use_pure': True
 }
 
 # Load ML Models
@@ -36,9 +37,9 @@ try:
         blood_test_model = pickle.load(f)
     with open('models/blood_test_scaler.pkl', 'rb') as f:
         blood_test_scaler = pickle.load(f)
-    print("✓ ML Models loaded successfully")
+    print("[Success] ML Models loaded successfully")
 except Exception as e:
-    print(f"⚠ Warning: ML Models not found. Please run train_models.py first!")
+    print(f"[Warning] ML Models not found. Please run train_models.py first!")
     print(f"Error: {e}")
 
 # Database connection helper
@@ -356,7 +357,7 @@ def doctor_blood_test():
     return render_template('blood_test_form.html', patients=patients)
 
 if __name__ == '__main__':
-    print("\n🏥 Hospital Management System Starting... 🏥")
+    print("\n--- Hospital Management System Starting... ---")
     print("=" * 50)
     print("Make sure to:")
     print("1. Create MySQL database using database_schema.sql")
